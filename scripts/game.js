@@ -20,7 +20,7 @@ function startGame() {
         letters[i].addEventListener('click', letterClick);
     }
 
-    document.addEventListener('keydown', letterClick);
+    document.addEventListener('keydown', keyClick);
 }
 
 function letterClick(e) {
@@ -40,12 +40,15 @@ function letterClick(e) {
 }
 
 function keyClick(e) {
+    let key = e.key.toLowerCase();
     let found = false;
-    for (let j = 0; j < word.length; j++) {
-        if (e.target.textContent.toLowerCase() == word[j]) {
-            dashesWord[j] = word[j];
-            result.innerHTML = dashesWord.join('');
-            found = true;
+    if (key >= 'a' && key <= 'z') {
+        for (let j = 0; j < word.length; j++) {
+            if (key == word[j]) {
+                dashesWord[j] = word[j];
+                result.innerHTML = dashesWord.join('');
+                found = true;
+            }
         }
     }
     if (!found) {
